@@ -34,7 +34,7 @@ import { Message, MessageBox } from 'element-ui'
                 },
                 rules: {
                     jobNo: [
-                        { required: true, message: '请输入工号或者学号', trigger: 'blur' }
+                        { required: true, message: '请输入用户名', trigger: 'blur' }
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
@@ -52,8 +52,9 @@ import { Message, MessageBox } from 'element-ui'
                             password: this.ruleForm.password
                   }).then(resp=> {
                       if(resp.status == 200){
-                        // window.localStorage["token"] = JSON.stringify(resp.data);
-                        window.localStorage["token"] = resp.data;
+                            console.log("登录成功");
+                        window.localStorage["token"] = JSON.stringify(resp.data);
+                        console.log("存入的token为：" + localStorage["token"]);
                         this.$router.push('/');
                       }else{
                         return false;

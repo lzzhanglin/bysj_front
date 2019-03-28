@@ -21,15 +21,8 @@ export default new Router({
           },
           {
             path: '/course',
-            component: resolve => require(['../components/page/CreateCourse.vue'], resolve),
-            meta: { title: '课程' ,requireAuth: true, },
-            children:[
-                {
-                    path: '/create',
-                    component: resolve => require(['../components/page/CreateCourse.vue'], resolve),
-                    meta: { title: '自定义图标', requireAuth: true,  }
-                },
-            ]
+            component: resolve => require(['../components/page/Course.vue'], resolve),
+            meta: { title: '课程' ,requireAuth: true, }
         },
           {
               path: '/icon',

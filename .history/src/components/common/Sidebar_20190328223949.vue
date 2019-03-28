@@ -39,39 +39,28 @@
                 collapse: false,
                 items: [
                     {
-                        icon: 'el-icon-menu',
+                        icon: 'el-icon-lx-home',
                         index: 'dashboard',
                         title: '系统首页'
                     },
                     
                      {
-                        icon: 'el-icon-more',
-                        index: '4',
-                        title: '课程',
-                        subs: [
-                            {
-                                index: 'create',
-                                title: '创建课程'
-                            },
-                            
-                            {
-                                index: 'upload',
-                                title: '课程管理'
-                            }
-                        ]
+                        icon: 'el-icon-lx-addressbook',
+                        index: 'course',
+                        title: '课程'
                     },
                     {
-                        icon: 'el-icon-edit-outline',
+                        icon: 'el-icon-lx-cascades',
                         index: 'table',
                         title: '基础表格'
                     },
                     {
-                        icon: 'el-icon-edit',
+                        icon: 'el-icon-lx-copy',
                         index: 'tabs',
                         title: 'tab选项卡'
                     },
                     {
-                        icon: 'el-icon-more-outline',
+                        icon: 'el-icon-lx-calendar',
                         index: '3',
                         title: '表单相关',
                         subs: [
@@ -100,12 +89,12 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-time',
+                        icon: 'el-icon-lx-emoji',
                         index: 'icon',
                         title: '自定义图标'
                     },
                     {
-                        icon: 'el-icon-setting',
+                        icon: 'el-icon-lx-favor',
                         index: 'charts',
                         title: 'schart图表'
                     },
@@ -125,7 +114,7 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-error',
+                        icon: 'el-icon-lx-warn',
                         index: '7',
                         title: '错误处理',
                         subs: [

@@ -52,8 +52,9 @@ import { Message, MessageBox } from 'element-ui'
                             password: this.ruleForm.password
                   }).then(resp=> {
                       if(resp.status == 200){
-                        // window.localStorage["token"] = JSON.stringify(resp.data);
-                        window.localStorage["token"] = resp.data;
+                            console.log("登录成功");
+                        window.localStorage["token"] = JSON.stringify(resp.data);
+                        console.log("存入的token为：" + localStorage["token"]);
                         this.$router.push('/');
                       }else{
                         return false;

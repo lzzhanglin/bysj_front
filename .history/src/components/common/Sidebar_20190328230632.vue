@@ -71,7 +71,7 @@
                         title: 'tab选项卡'
                     },
                     {
-                        icon: 'el-icon-more-outline',
+                        icon: 'el-icon-lx-calendar',
                         index: '3',
                         title: '表单相关',
                         subs: [
@@ -100,12 +100,12 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-time',
+                        icon: 'el-icon-lx-emoji',
                         index: 'icon',
                         title: '自定义图标'
                     },
                     {
-                        icon: 'el-icon-setting',
+                        icon: 'el-icon-lx-favor',
                         index: 'charts',
                         title: 'schart图表'
                     },
@@ -125,7 +125,7 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-error',
+                        icon: 'el-icon-lx-warn',
                         index: '7',
                         title: '错误处理',
                         subs: [

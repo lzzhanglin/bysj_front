@@ -125,7 +125,7 @@
                         ]
                     },
                     {
-                        icon: 'el-icon-error',
+                        icon: 'el-icon-lx-warn',
                         index: '7',
                         title: '错误处理',
                         subs: [

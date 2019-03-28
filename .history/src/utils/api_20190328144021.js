@@ -4,8 +4,7 @@ import {Message} from 'element-ui'
 axios.interceptors.request.use(config=> {
   console.log("token is："+localStorage.token);
   if (localStorage.token) { //判断token是否存在
-    // config.headers.Authorization = localStorage.token;  //将token设置成请求头
-    config.headers.token = localStorage.token; 
+    config.headers.Authorization = localStorage.token;  //将token设置成请求头
   }
   return config;
 
