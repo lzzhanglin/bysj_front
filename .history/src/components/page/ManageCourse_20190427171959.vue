@@ -152,7 +152,9 @@
                
             }
         },
-      
+         components: {
+            quillEditor
+        },
         methods: {
             // 分页导航
             handleCurrentChange(val) {

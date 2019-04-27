@@ -37,7 +37,7 @@
                 </el-table-column>
                 <el-table-column prop="electorNum" label="选课人数" align="center"  width="80">
                 </el-table-column>
-                <el-table-column label="操作" width="180" align="center" fixed="right"> 
+                <el-table-column label="操作" width="180" align="center"> 
                 <template slot-scope="scope"> 
                     <el-button type="text" icon="el-icon-lx-forward" class="green" @click="handleView(scope.$index, scope.row)">查看</el-button>
                          <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> 
@@ -152,7 +152,6 @@
                
             }
         },
-      
         methods: {
             // 分页导航
             handleCurrentChange(val) {
@@ -201,11 +200,9 @@
             handleView(index, row){
                 const item = this.tableData[index];
                  this.$router.push({
-                   path: '/course/detail', query:{id: item.courseId}
+                   path: '/course/id', query:{id: item.courseId}
+
         });
-        // this.$router.push({
-        //            name: '/course/detail', params:{id: item.courseId}
-        // });
             },
             handleEdit(index, row) {
                 this.idx = index;

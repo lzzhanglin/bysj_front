@@ -152,7 +152,6 @@
                
             }
         },
-      
         methods: {
             // 分页导航
             handleCurrentChange(val) {
@@ -200,12 +199,12 @@
             },
             handleView(index, row){
                 const item = this.tableData[index];
-                 this.$router.push({
-                   path: '/course/detail', query:{id: item.courseId}
-        });
-        // this.$router.push({
-        //            name: '/course/detail', params:{id: item.courseId}
+        //          this.$router.push({
+        //            path: '/course/detail', query:{id: item.courseId}
         // });
+        this.$router.push({
+                   name: '/course/detail', params:{id: item.courseId}
+        });
             },
             handleEdit(index, row) {
                 this.idx = index;

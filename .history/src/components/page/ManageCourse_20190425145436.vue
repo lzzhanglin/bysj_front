@@ -20,14 +20,10 @@
             <el-table :data="tableData" border class="table" ref="multipleTable" >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="courseName" label="课程名称" align="center" sortable width="150">
-                    
-
                 </el-table-column>
-                <el-table-column prop="createTime" label="创建时间" align="center" sortable width="200">
+                <el-table-column prop="createTime" label="创建时间" align="center" sortable width="150">
                 </el-table-column>
-                <el-table-column prop="courseKind" label="课程类型" align="center" sortable width="100">
-                </el-table-column>
-                <el-table-column prop="courseIntro" label="课程简介" align="center" sortable width="250">
+                <el-table-column prop="courseIntro" label="课程简介"  sortable width="250">
                 </el-table-column>
                 <el-table-column prop="dateBegin" label="开课日期" align="center" sortable width="150">
                 </el-table-column>
@@ -37,9 +33,8 @@
                 </el-table-column>
                 <el-table-column prop="electorNum" label="选课人数" align="center"  width="80">
                 </el-table-column>
-                <el-table-column label="操作" width="180" align="center" fixed="right"> 
+                <el-table-column label="操作" width="180" align="center"> 
                 <template slot-scope="scope"> 
-                    <el-button type="text" icon="el-icon-lx-forward" class="green" @click="handleView(scope.$index, scope.row)">查看</el-button>
                          <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> 
                          <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> 
                      </template>
@@ -54,28 +49,18 @@
         <!-- 编辑弹出框  -->
          <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="50px">
-                 <el-form-item label="课程名称">
+                 <el-form-item label="姓名">
                     <el-input v-model="form.courseName"></el-input>
                 </el-form-item>
-
-                 <el-form-item label="课程性质">
-                        <el-select v-model="form.courseKind" >
-                            <el-option key="bixiu" label="必修" value="bixiu"></el-option>
-                            <el-option key="xianxuan" label="限选" value="xianxuan"></el-option>
-                            <el-option key="renxuan" label="任选" value="renxuan"></el-option>
-                        </el-select>
-                    </el-form-item>
-                 <el-form-item label="课程介绍">
+                 <el-form-item label="姓名">
                     <el-input v-model="form.courseIntro"></el-input>
                 </el-form-item>
 
                 <el-form-item label="开课日期">
-                    <el-date-picker type="date" placeholder="选择日期" :picker-options="dateBeginOptions" 
-                    v-model="form.dateBegin" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                    <el-date-picker type="date" placeholder="选择日期" v-model="form.dateBegin" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                   <el-form-item label="结课日期">
-                    <el-date-picker type="date" placeholder="选择日期" :picker-options="dateEndOptions" 
-                    v-model="form.dateEnd" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                    <el-date-picker type="date" placeholder="选择日期" v-model="form.dateEnd" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
                 </el-form-item>
                
 
@@ -87,13 +72,13 @@
         </el-dialog>
 
         <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
+        <!-- <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
             <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="delVisible = false">取 消</el-button>
                 <el-button type="primary" @click="deleteRow">确 定</el-button>
             </span>
-        </el-dialog>
+        </el-dialog> -->
     </div>
 </template>
 
@@ -117,31 +102,7 @@
                     date: '',
                     address: ''
                 },
-                idx: -1,
-                //对开课日期不再做只能选择今天之后日期的限制 结课时间依然遵循大于开课日期的原则
-                dateBeginOptions: {
-                disabledDate: (time) => {
-                    if (this.form.dateEnd) {
-                        //如果选择了结课日期，只能选则今天之后的日期 且 结课日期之前的日期
-                        return time.getTime() >  new Date(this.form.dateEnd).getTime() - 8.64e7;
- 
-                }else{//还没有选择结束时间的时候，让他只能选择今天之后的时间 包括今天
-                        // return time.getTime() < Date.now() - 8.64e7;
-                        return null;
-                    } 
-            }
-                 },
-            dateEndOptions: {
-                disabledDate: (time) => {
-                    if(this.form.dateBegin){
-                    //结课日期必须大于开课日期
-                    return time.getTime() < new Date(this.form.dateBegin).getTime() + 8.64e7;
-                    }else{
-                     return time.getTime() < Date.now() ;
-                    }
-                    
-                }
-            }
+                idx: -1
             }
         },
         created() {
@@ -149,10 +110,25 @@
         },
         computed: {
             data() {
-               
+                // return this.tableData.filter((d) => {
+                //     let is_del = false;
+                //     for (let i = 0; i < this.del_list.length; i++) {
+                //         if (d.name === this.del_list[i].name) {
+                //             is_del = true;
+                //             break;
+                //         }
+                //     }
+                //     if (!is_del) {
+                //         if (d.address.indexOf(this.select_cate) > -1 &&
+                //             (d.name.indexOf(this.select_word) > -1 ||
+                //                 d.address.indexOf(this.select_word) > -1)
+                //         ) {
+                //             return d;
+                //         }
+                //     }
+                // })
             }
         },
-      
         methods: {
             // 分页导航
             handleCurrentChange(val) {
@@ -164,9 +140,7 @@
                 var dataFromDb = [];
               let _this = this
                 this.$axios.get('/api/course/getCourseList', {
-                    params: {
-                        jobNo: window.localStorage["jobNo"]
-                    }
+                    jobNo: '631507010427'
                 }).then((res) => {
 
                     for (let i = 0; i < res.data.data.length; i++) {
@@ -198,32 +172,11 @@
             filterTag(value, row) {
                 return row.tag === value;
             },
-            handleView(index, row){
-                const item = this.tableData[index];
-                 this.$router.push({
-                   path: '/course/detail', query:{id: item.courseId}
-        });
-        // this.$router.push({
-        //            name: '/course/detail', params:{id: item.courseId}
-        // });
-            },
             handleEdit(index, row) {
                 this.idx = index;
                 const item = this.tableData[index];
-                //传回的值是汉字 但是给下拉框赋值需要拼音 所以转换
-                var cKind;
-                if(item.courseKind =="必修"){
-                    cKind = "bixiu"
-                }
-                if(item.courseKind =="限选"){
-                    cKind = "xianxuan"
-                }
-                if(item.courseKind == "任选"){
-                    cKind = "renxuan"
-                }
                 this.form = {
                     courseId: item.courseId,
-                    courseKind: cKind,
                     courseName: item.courseName,
                     courseIntro: item.courseIntro,
                     createTime: item.createTime,
@@ -234,10 +187,10 @@
                 }
                 this.editVisible = true;
             },
-            handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
-            },
+            // handleDelete(index, row) {
+            //     this.idx = index;
+            //     this.delVisible = true;
+            // },
             // delAll() {
             //     const length = this.multipleSelection.length;
             //     let str = '';
@@ -258,47 +211,24 @@
                  
                         courseId: this.form.courseId,
                         courseName: this.form.courseName,
-                        courseKind: this.form.courseKind,
                         courseIntro: this.form.courseIntro,
                         timeBegin: this.form.dateBegin,
                         timeEnd: this.form.dateEnd
                 
                 }).then((res) => {
-                    //弹出框里的值是拼音 赋值给表格需要转为汉字
-                    if(this.form.courseKind == "bixiu"){
-                        this.form.courseKind = "必修"
-                    }
-                    if(this.form.courseKind == "xianxuan"){
-                        this.form.courseKind = "限选"
-                    }
-                    if(this.form.courseKind == "renxuan"){
-                        this.form.courseKind = "任选"
-                    }
-                this.$set(this.tableData, this.idx, this.form);
+       this.$set(this.tableData, this.idx, this.form);
                 this.editVisible = false;
                 this.$message.success(`修改第 ${this.idx+1} 行成功`);
 
                 })
               
-            },
-            // 确定删除
-            deleteRow(){
-                const item = this.tableData[this.idx];
-                this.tableData.splice(this.idx, 1);
-                this.$axios.delete('/api/course/delete', {
-                    params: {
-                        courseId: item.courseId
-                        
-                    }
-                }).then((res) => {
-
-                    this.$message.success('删除成功');
-                this.delVisible = false;
-                  
-
-                })
-               
             }
+            // 确定删除
+            // deleteRow(){
+            //     this.tableData.splice(this.idx, 1);
+            //     this.$message.success('删除成功');
+            //     this.delVisible = false;
+            // }
         }
     }
 
@@ -327,9 +257,6 @@
     }
     .red{
         color: #ff0000;
-    }
-     .green{
-        color: #63c991;
     }
     .mr10{
         margin-right: 10px;

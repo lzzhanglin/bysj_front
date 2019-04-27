@@ -183,15 +183,9 @@ export default new Router({
                     meta: { title: '选课中心',requireAuth:true,requireTeacher:false}
                 },
                 {
-                    path: 'detail',
+                    path: 'id',
                     component: resolve => require(['../components/page/CourseDetail.vue'], resolve),
-                    meta: { title: '课程详情',requireAuth:true,requireTeacher:true },
-                   
-                },
-                {
-                    path: 'chapter',
-                    component: resolve => require(['../components/page/ChapterDetail.vue'], resolve),
-                    meta: { title: '章节详情',requireAuth:true,requireTeacher:true }
+                    meta: { title: '查看课程',requireAuth:true,requireTeacher:false }
                 }
             ]
         },
