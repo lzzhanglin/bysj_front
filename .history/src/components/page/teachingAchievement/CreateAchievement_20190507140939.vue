@@ -35,6 +35,7 @@
                             ref="upload"
                             :disabled= this.disableUpload
                             :data=paramsData
+                            :headers=token
                             action="/api/material/upload"
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
@@ -60,7 +61,9 @@
         data: function(){
            
             return {
-               
+                token:{
+                    token:window.localStorage["token"]
+                },
                 achievementId: '',
                 fileList: [],
                 disableUpload:true,

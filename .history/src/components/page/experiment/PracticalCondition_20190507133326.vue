@@ -60,7 +60,6 @@
         data: function(){
            
             return {
-               
                 achievementId: '',
                 fileList: [],
                 disableUpload:true,

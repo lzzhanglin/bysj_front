@@ -209,7 +209,7 @@ export default new Router({
                 {
                     path: 'condition',
                     component: resolve => require(['../components/page/experiment/PracticalCondition.vue'], resolve),
-                    meta: { title: '实践条件',requireAuth:true,isPublic:true }
+                    meta: { title: '实践条件',requireAuth:true,requireTeacher:true }
                 },
                 {
                     path: 'manage',
