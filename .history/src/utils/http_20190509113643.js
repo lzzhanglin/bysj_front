@@ -3,8 +3,7 @@ import { Message, MessageBox } from 'element-ui'
 // import store from '../store'
 import router from '../router'
 axios.defaults.timeout = 8000;
-axios.defaults.baseURL = 'http://127.0.0.1:8081';
-// axios.defaults.baseURL = 'http://118.89.174.33:8081';
+axios.defaults.baseURL = 'http://118.89.174.33:8081';
 
 // // 创建axios实例
 // const service = axios.create({

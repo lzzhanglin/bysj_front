@@ -229,24 +229,24 @@ export default new Router({
             ]
         },
         {
-            path: '/courseBuild',
+            path: '/courseBuilid',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             meta:{title:'课程建设' },
             children:[
                 {
                     path: 'intro',
                     component: resolve => require(['../components/page/courseBuild/CourseIntro.vue'], resolve),
-                    meta: { title: '课程简介',requireAuth:true,isPublic:true }
+                    meta: { title: '实践条件',requireAuth:true,isPublic:true }
                 },
                 {
                     path: 'plan',
                     component: resolve => require(['../components/page/courseBuild/CoursePlan.vue'], resolve),
-                    meta: { title: '课程规划',requireAuth:true,isPublic:true }
+                    meta: { title: '实验项目',requireAuth:true,isPublic:true }
                 },
                 {
                     path: 'outline',
                     component: resolve => require(['../components/page/courseBuild/CourseOutline.vue'], resolve),
-                    meta: { title: '课程大纲',requireAuth:true,isPublic:true }
+                    meta: { title: '结课大作业',requireAuth:true,isPublic:true }
                 },
             ]
         },

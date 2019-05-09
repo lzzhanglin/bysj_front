@@ -229,7 +229,7 @@ export default new Router({
             ]
         },
         {
-            path: '/courseBuild',
+            path: '/courseBuilid',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             meta:{title:'课程建设' },
             children:[
