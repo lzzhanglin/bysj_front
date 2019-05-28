@@ -176,10 +176,22 @@
                         ]
                        
                     },
+                       {
+                        icon: 'el-icon-lx-text',
+                        index: '6',
+                        title: '用户管理',
+                        subs:[
+                             {
+                                index: '/user/changePwd',
+                                title: '修改密码'
+                            },
+                           
+                        ]
+                    },
                     
                 ]
             }
-            }else{
+            }else if(window.localStorage["role"] ==="ROLE_STUDENT"){
                 console.log("进入侧边栏else")
                 return {
                 collapse: false,
@@ -302,8 +314,58 @@
                         ]
                        
                     },
+                     {
+                        icon: 'el-icon-lx-text',
+                        index: '6',
+                        title: '用户管理',
+                        subs:[
+                             {
+                                index: '/user/changePwd',
+                                title: '修改密码'
+                            },
+                           
+                        ]
+                    },
                 ]
             }
+            }else if(window.localStorage["role"] ==="ROLE_ADMIN"){
+                return{
+                    collapse: false,
+                    items: [
+                    {
+                        icon: 'el-icon-lx-home',
+                        index: '/dashboard',
+                        title: '系统首页'
+                    },
+                    
+                     {
+                        icon: 'el-icon-lx-text',
+                        index: '1',
+                        title: '用户管理',
+                        subs:[
+                             {
+                                index: '/user/batchImport',
+                                title: '批量注册'
+                            },
+                           {
+                                index: '/user/manage',
+                                title: '管理用户'
+                            },
+                             {
+                                index: '/user/changePwd',
+                                title: '修改密码'
+                            },
+                           
+                        ]
+                    },
+                
+                ]
+                }
+            }else{
+                     return{
+                    collapse: false,
+                    items: []
+                }
             }
         },
         computed:{

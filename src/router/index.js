@@ -348,6 +348,31 @@ export default new Router({
              
             ]
         },
+          
+       
+        {
+            path: '/user',
+            component: resolve => require(['../components/common/Home.vue'], resolve),
+            meta:{title:'用户管理' },
+            children:[
+                {
+                    path: 'batchImport',
+                    component: resolve => require(['../components/page/user/CreateUser.vue'], resolve),
+                    meta: { title: '批量注册',requireAuth:true,requireAdmin:true }
+                },
+                {
+                    path: 'manage',
+                    component: resolve => require(['../components/page/user/ManageUser.vue'], resolve),
+                    meta: { title: '管理用户',requireAuth:true,requireAdmin:true }
+                },
+                {
+                    path: 'changePwd',
+                    component: resolve => require(['../components/page/user/ChangePwd.vue'], resolve),
+                    meta: { title: '管理用户',requireAuth:true,isPublic:true }
+                },
+             
+            ]
+        },
         {
             path: '/',
             component: resolve => require(['../components/common/Home.vue'], resolve),

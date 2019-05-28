@@ -41,7 +41,7 @@ Vue.prototype.$qs = qs;
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
        // 获取当前的token以及后端返回的role是否存在
-        if (localStorage.token && localStorage.role ) { 
+        if (localStorage.token && localStorage.role) { 
           //该页面需要老师才能访问 
           if(to.meta.isPublic){
             next();
@@ -50,9 +50,13 @@ router.beforeEach((to, from, next) => {
           }
           else if(!to.meta.requireTeacher && localStorage.role === "ROLE_STUDENT"){
             next();
-          }else{
+          }else if(to.meta.requireAdmin && localStorage.role === "ROLE_ADMIN"){
+            console.log("进入管理员页面");
+            next();
+          }
+          else{
             next({
-              path: '/403', // 跳转到404页面
+              path: '/403', // 跳转到403页面
               query: {redirect: to.fullPath}
             })
           }
