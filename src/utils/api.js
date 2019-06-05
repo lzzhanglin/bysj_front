@@ -41,6 +41,11 @@ axios.interceptors.response.use(data=> {
       showClose: true,
       duration:2000
   })
+  window.localStorage.removeItem('token');
+                    window.localStorage.removeItem('username');
+                    window.localStorage.removeItem('role');
+                    this.$router.push('/login');
+
 }else{
     Message({
       message:"未知错误",

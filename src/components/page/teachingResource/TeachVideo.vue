@@ -190,7 +190,7 @@
                    return this.$axios.get('/api/practicalCondition/getToken', {
                   params:{
                       fileName:file.name,
-                      bucketName:"video"
+                      bucketName:"file"
                 
                   }
                 }).then((res) => {
@@ -207,25 +207,26 @@
          onSuccess(response,file) {
              //外链 一个月变一次 应绑定自己的域名 各个bucket外链不一样 外链需要转码
              var url = encodeURIComponent(response.key)
-             this.externalLink = `http://prdti85a8.bkt.clouddn.com/${url}`
+             this.externalLink = `http://file.lastisee.com/${url}`
             //在线预览的链接 加上微软的链接 word ppt 都需要微软的服务 pdf jpg png不需要 可以直接预览
              var previewLink = "http://view.officeapps.live.com/op/view.aspx?src="+this.externalLink;
                 this.fileList = []
                 //上传七牛云成功之后 将上传文档的信息写入数据库
-                this.postRequest('/api/teachVideo/writeFileInfo', {
-                            videoName: response.key,
+                this.postRequest('/api/attachment/upload', {
+                            attachName: response.key,
                             externalLink: this.externalLink,
                             previewLink: previewLink,
                             creatorJobNo: window.localStorage["jobNo"],
                             courseId: this.videoForm.courseId,
                             chapterId: this.videoForm.chapterId,
+                            fileType:"teachVideo"
                   }).then(resp=> {
                       
                       if(resp.data.status === 200){
                 this.$message.success('上传成功！');
                 this.getVideoList();
 
-                this.videoForm.chapterId=null;
+                // this.videoForm.chapterId=null;
                 this.disableUpload = true;
 
                       }
@@ -333,9 +334,11 @@
            getVideoList() {
                 var dataFromDb = [];
               let _this = this
-                this.$axios.get('/api/teachVideo/getTeachVideoList', {
+                this.$axios.get('/api/attachment/getFileByDoubleIdAndType', {
                     params:{
                         chapterId:this.videoForm.chapterId,
+                        courseId:this.videoForm.courseId,
+                        fileType:"teachVideo"
                     
                     }
                 }).then((res) => {
@@ -349,9 +352,9 @@
                
                 var obj = {}
                 var dt = res.data.data
-                obj.videoName = dt[i].videoName
-                obj.videoId = dt[i].videoId
-                obj.createTime = dt[i].createTime
+                obj.videoName = dt[i].attachName
+                obj.videoId = dt[i].attachId
+                obj.createTime = dt[i].uploadTime
                 obj.externalLink = dt[i].externalLink
                 obj.previewLink = dt[i].previewLink
                 obj.chapterId = dt[i].chapterId
@@ -375,9 +378,9 @@
             },
      
             deleteVideo(courseWareId){
-                  this.$axios.delete('/api/teachVideo/delete', {
+                  this.$axios.delete('/api/attachment/deleteFileById', {
                     params: {
-                        videoId: this.deleteVideoId
+                        attachId: this.deleteVideoId
                     }
                 }).then((res) => {
 

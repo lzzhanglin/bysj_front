@@ -66,46 +66,17 @@
                                 index: '/teachResource/courseWare',
                                 title: '教学课件'
                             },
-                            {
-                                index: '/teachResource/exercise',
-                                title: '课程习题'
-                            },
-                             {
-                                index: '/teachResource/solution',
-                                title: '参考答案'
-                            },
+                          
                              {
                                 index: '/teachResource/video',
                                 title: '教学视频'
                             },
-                            {
-                                index: '/teachResource/example',
-                                title: '教学案例'
-                            }
+                           
                 
                            
                         ]
                     },
-                     {
-                        icon: 'el-icon-lx-text',
-                        index: '2',
-                        title: '课程建设',
-                        subs: [
-                             {
-                                index: '/courseBuild/intro',
-                                title: '课程简介'
-                            },
-                            {
-                                index: '/courseBuild/plan',
-                                title: '课程规划'
-                            },
-                               {
-                                index: '/courseBuild/outline',
-                                title: '课程大纲'
-                            },
-                           
-                        ]
-                    },
+                    
                     {
                         icon: 'el-icon-lx-text',
                         index: '3',
@@ -120,10 +91,6 @@
                             {
                                 index: '/experiment/project',
                                 title: '实验项目'
-                            },
-                             {
-                                index: '/experiment/homework',
-                                title: '结课大作业'
                             }
                         ]
                        
@@ -188,6 +155,19 @@
                            
                         ]
                     },
+                     {
+                        icon: 'el-icon-lx-text',
+                        index: '7',
+                        title: '交流中心',
+                        subs:[
+                             {
+                                index: '/message/test',
+                                title: '在线交流'
+                            },
+                          
+                           
+                        ]
+                    }
                     
                 ]
             }
@@ -207,52 +187,18 @@
                         index: '1',
                         title: '课程',
                         subs:[
-                   
-                             
-                         
-                          
                              {
                                 index: '/teachResource/courseWare',
                                 title: '教学课件'
-                            },
-                           {
-                                index: '/teachResource/exercise',
-                                title: '课程习题'
-                            },
-                             {
-                                index: '/teachResource/solution',
-                                title: '参考答案'
                             },
                             {
                                 index: '/teachResource/video',
                                 title: '教学视频'
                             },
-                            {
-                                index: '/teachResource/example',
-                                title: '教学案例'
-                            }
-                        ]
-                    },
-                    {
-                        icon: 'el-icon-lx-text',
-                        index: '2',
-                        title: '课程建设',
-                        subs: [
-                             {
-                                index: '/courseBuild/intro',
-                                title: '课程简介'
-                            },
-                            {
-                                index: '/courseBuild/plan',
-                                title: '课程规划'
-                            },
-                               {
-                                index: '/courseBuild/outline',
-                                title: '课程大纲'
-                            },
                            
                         ]
                     },
+                   
                     {
                         icon: 'el-icon-lx-text',
                         index: '3',
@@ -265,10 +211,6 @@
                             {
                                 index: '/experiment/project',
                                 title: '实验项目'
-                            },
-                            {
-                                index: '/experiment/homework',
-                                title: '结课大作业'
                             }
                         ]
                        
@@ -326,6 +268,19 @@
                            
                         ]
                     },
+                    {
+                        icon: 'el-icon-lx-text',
+                        index: '7',
+                        title: '交流中心',
+                        subs:[
+                             {
+                                index: '/message/test',
+                                title: '在线交流'
+                            },
+                          
+                           
+                        ]
+                    }
                 ]
             }
             }else if(window.localStorage["role"] ==="ROLE_ADMIN"){
@@ -349,15 +304,29 @@
                             },
                            {
                                 index: '/user/manage',
-                                title: '管理用户'
+                                title: '批量管理'
                             },
                              {
                                 index: '/user/changePwd',
                                 title: '修改密码'
                             },
+                         
                            
                         ]
                     },
+                       {
+                        icon: 'el-icon-lx-text',
+                        index: '2',
+                        title: '交流中心',
+                        subs:[
+                             {
+                                index: '/message/test',
+                                title: '在线交流'
+                            },
+                          
+                           
+                        ]
+                    }
                 
                 ]
                 }

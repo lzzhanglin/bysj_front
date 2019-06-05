@@ -146,7 +146,7 @@
         return this.$axios.get('/api/practicalCondition/getToken', {
                   params:{
                       fileName:file.name,
-                      bucketName:"image"
+                      bucketName:"file"
                 
                   }
                 }).then((res) => {
@@ -162,18 +162,18 @@
         },
          onSuccess(response,file) {
               var url = encodeURIComponent(response.key)
-             this.externalLink = `http://pr6nxsoz1.bkt.clouddn.com/${url}`
+             this.externalLink = `http://file.lastisee.com/${url}`
                 this.fileList = []
                 //刷新当前页面 将刚刚上传的图片显示出来
                  this.getImgData();
                   //上传七牛云成功之后 将上传文档的信息写入数据库
-                this.postRequest('/api/practicalCondition/writeFileInfo', {
-                            fileName: response.key,
+                this.postRequest('/api/attachment/upload', {
+                            attachName: response.key,
                             externalLink: this.externalLink,
                             //图片文件 不需要预览链接
                             previewLink: null,
                             creatorJobNo: window.localStorage["jobNo"],
-                            fileType: 1,
+                            fileType: "practicalCondition",
                             describe: this.conditionForm.describe
                   }).then(resp=> {
                       
@@ -210,9 +210,9 @@
             getImgData() {
                 var dataFromDb = [];
               let _this = this
-                this.$axios.get('/api/practicalCondition/getAllFileByType', {
+                this.$axios.get('/api/attachment/getFileByType', {
                   params:{
-                      fileType:1
+                      fileType:"practicalCondition"
                   }
                 }).then((res) => {
 
@@ -220,8 +220,8 @@
                
                 var obj = {}
                 var dt = res.data.data
-                obj.practicalConditionId = dt[i].practicalConditionId
-                obj.practicalConditionName = dt[i].practicalConditionName
+                obj.practicalConditionId = dt[i].attachId
+                obj.practicalConditionName = dt[i].attachName
                 obj.uploadTime = dt[i].uploadTime
                 obj.describe = dt[i].describe
                 obj.creatorJobNo = dt[i].creatorJobNo
@@ -238,9 +238,9 @@
             },
             deleteImg(conditionId){
                 console.log("进入删除函数");
-                  this.$axios.delete('/api/practicalCondition/delete', {
+                  this.$axios.delete('/api/attachment/deleteFileById', {
                     params: {
-                        conditionId: this.deleteConditionId
+                        attachId: this.deleteConditionId
                     }
                 }).then((res) => {
 

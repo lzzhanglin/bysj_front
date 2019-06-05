@@ -20,10 +20,12 @@ import {getRequest} from './utils/api'
 import {postRequest} from './utils/api'
 import {deleteRequest} from './utils/api'
 import {putRequest} from './utils/api'
+
+
 Vue.config.productionTip = false
 
 
-  
+
 Vue.use(ElementUI, {
     size: 'small'
 });

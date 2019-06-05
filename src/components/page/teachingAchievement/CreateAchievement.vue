@@ -107,7 +107,7 @@
             onSuccess(response,file) {
                //外链 一个月变一次 应绑定自己的域名 各个bucket外链不一样 外链需要转码
              var url = encodeURIComponent(response.key)
-             this.externalLink = `http://pr6cooamz.bkt.clouddn.com/${url}`
+             this.externalLink = `http://file.lastisee.com/${url}`
             //在线预览的链接 加上微软的链接
              var previewLink = "https://view.officeapps.live.com/op/embed.aspx?src="+this.externalLink;
                 this.fileList = []
@@ -129,10 +129,10 @@
             },
              handleBeforeUpload(file) {
                //获取上传到七牛云的token 
-                   return this.$axios.get('/api/practicalCondition/getToken', {
+                   return this.$axios.get('/api/attachment/getToken', {
                   params:{
                       fileName:file.name,
-                      bucketName:"material"
+                      bucketName:"file"
                 
                   }
                 }).then((res) => {

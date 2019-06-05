@@ -9,13 +9,13 @@
            </div>
              <el-table :data="tableData" border class="table" ref="multipleTable" >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="chapterName" label="章节名称" align="center" sortable width="150">
+                <el-table-column prop="chapterName" label="章节名称" align="center" sortable width="350">
                     
 
                 </el-table-column>
                 <el-table-column prop="chapterOrder" label="章节序号" align="center" sortable width="200">
                 </el-table-column>
-                 <el-table-column prop="courseName" label="所属课程" align="center" sortable width="200">
+                 <el-table-column prop="courseName" label="所属课程" align="center" sortable width="300">
                 </el-table-column>
                 <!-- <el-table-column prop="chapterContent" label="章节内容" align="center" sortable width="300">
                 </el-table-column> -->

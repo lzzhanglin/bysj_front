@@ -53,7 +53,7 @@
 
         <!-- 编辑弹出框  -->
          <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="50px">
+            <el-form ref="form" :model="form" label-width="100px">
                  <el-form-item label="课程名称">
                     <el-input v-model="form.courseName"></el-input>
                 </el-form-item>

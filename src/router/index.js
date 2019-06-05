@@ -162,42 +162,6 @@ export default new Router({
             //     isPublic:true
             // }
         },
-
-        // {
-        //     path: '/course',
-        //     component: resolve => require(['../components/common/Home.vue'], resolve),
-        //     meta: { title: '自述文件'},
-        //     children:[
-        //         {
-        //             path: 'create',
-        //             component: resolve => require(['../components/page/course/CreateCourse.vue'], resolve),
-        //             meta: { title: '创建课程',requireAuth:true,requireTeacher:true }
-        //         },
-        //         {
-        //             path: 'manage',
-        //             component: resolve => require(['../components/page/course/ManageCourse.vue'], resolve),
-        //             meta: { title: '管理课程',requireAuth:true,requireTeacher:true }
-        //         },
-              
-        //         {
-        //             path: 'choose',
-        //             component: resolve => require(['../components/page/course/ChooseCourse.vue'], resolve),
-        //             meta: { title: '选课中心',requireAuth:true,requireTeacher:false}
-        //         },
-        //         {
-        //             path: 'detail',
-        //             component: resolve => require(['../components/page/course/CourseDetail.vue'], resolve),
-        //             meta: { title: '课程详情',requireAuth:true,requireTeacher:true },
-                   
-        //         },
-               
-        //         {
-        //             path: 'test',
-        //             component: resolve => require(['../components/page/test.vue'], resolve),
-        //             meta: { title: '上传测试',requireAuth:true,requireTeacher:true }
-        //         }
-        //     ]
-        // },
         {
             path: '/experiment',
             component: resolve => require(['../components/common/Home.vue'], resolve),
@@ -213,40 +177,11 @@ export default new Router({
                     component: resolve => require(['../components/page/experiment/ExperimentProject.vue'], resolve),
                     meta: { title: '实验项目',requireAuth:true,isPublic:true }
                 },
-                {
-                    path: 'homework',
-                    component: resolve => require(['../components/page/experiment/Homework.vue'], resolve),
-                    meta: { title: '结课大作业',requireAuth:true,isPublic:true }
-                },
-                {
-                    path: 'download',
-                    component: resolve => require(['../components/page/experiment/DownloadExperimentReport.vue'], resolve),
-                    meta: { title: '上传实验报告',requireAuth:true,isPublic:true }
-                },
+               
+          
             ]
         },
-        {
-            path: '/courseBuild',
-            component: resolve => require(['../components/common/Home.vue'], resolve),
-            meta:{title:'课程建设' },
-            children:[
-                {
-                    path: 'intro',
-                    component: resolve => require(['../components/page/courseBuild/CourseIntro.vue'], resolve),
-                    meta: { title: '课程简介',requireAuth:true,isPublic:true }
-                },
-                {
-                    path: 'plan',
-                    component: resolve => require(['../components/page/courseBuild/CoursePlan.vue'], resolve),
-                    meta: { title: '课程规划',requireAuth:true,isPublic:true }
-                },
-                {
-                    path: 'outline',
-                    component: resolve => require(['../components/page/courseBuild/CourseOutline.vue'], resolve),
-                    meta: { title: '课程大纲',requireAuth:true,isPublic:true }
-                },
-            ]
-        },
+
         {
             path: '/teachResource',
             component: resolve => require(['../components/common/Home.vue'], resolve),
@@ -274,26 +209,11 @@ export default new Router({
                     meta: { title: '教学课件',requireAuth:true,isPublic:true }
                 },
                 {
-                    path: 'exercise',
-                    component: resolve => require(['../components/page/teachingResource/CourseExercise.vue'], resolve),
-                    meta: { title: '课程习题',requireAuth:true,isPublic:true }
-                },
-                {
-                    path: 'solution',
-                    component: resolve => require(['../components/page/teachingResource/ExerciseSolution.vue'], resolve),
-                    meta: { title: '参考答案',requireAuth:true,isPublic:true }
-                },
-                {
                     path: 'video',
                     component: resolve => require(['../components/page/teachingResource/TeachVideo.vue'], resolve),
                     meta: { title: '教学视频',requireAuth:true,isPublic:true }
                 },
-                {
-                    path: 'example',
-                    component: resolve => require(['../components/page/teachingResource/TeachExample.vue'], resolve),
-                    meta: { title: '教学案例',requireAuth:true,isPublic:true }
-                },
-             
+               
             ]
         },
         {
@@ -363,16 +283,28 @@ export default new Router({
                 {
                     path: 'manage',
                     component: resolve => require(['../components/page/user/ManageUser.vue'], resolve),
-                    meta: { title: '管理用户',requireAuth:true,requireAdmin:true }
+                    meta: { title: '批量管理',requireAuth:true,requireAdmin:true }
                 },
                 {
                     path: 'changePwd',
                     component: resolve => require(['../components/page/user/ChangePwd.vue'], resolve),
-                    meta: { title: '管理用户',requireAuth:true,isPublic:true }
+                    meta: { title: '修改密码',requireAuth:true,isPublic:true }
                 },
-             
             ]
         },
+        {
+            path: '/message',
+            component: resolve => require(['../components/common/Home.vue'], resolve),
+            meta:{title:'交流中心' },
+            children:[
+                {
+                    path: 'test',
+                    component: resolve => require(['../components/page/message/messageTest.vue'], resolve),
+                    meta: { title: '在线交流',requireAuth:true,isPublic:true }
+                },
+            ]
+        },
+     
         {
             path: '/',
             component: resolve => require(['../components/common/Home.vue'], resolve),

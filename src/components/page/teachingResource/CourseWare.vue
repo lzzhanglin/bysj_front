@@ -147,10 +147,7 @@
                     courseId: [
                         { required: true, message: '不能为空', trigger: 'change' },
                     ],
-                    // chapterId: [
-                    //     { required: true, message: '不能为空', trigger: 'change' },
-                        
-                    // ],
+                   
                    
                 }
             }
@@ -182,10 +179,10 @@
                     return isPdf
                 }
                 //获取token 共用的组件 获取上传七牛云的token
-                   return this.$axios.get('/api/practicalCondition/getToken', {
+                   return this.$axios.get('/api/attachment/getToken', {
                   params:{
                       fileName:file.name,
-                      bucketName:"pdf"
+                      bucketName:"file"
                 
                   }
                 }).then((res) => {
@@ -202,26 +199,26 @@
          onSuccess(response,file) {
              //外链 一个月变一次 应绑定自己的域名 各个bucket外链不一样 外链需要转码
              var url = encodeURIComponent(response.key)
-             this.externalLink = `http://prbq5ggik.bkt.clouddn.com/${url}`
+             this.externalLink = `http://file.lastisee.com/${url}`
             //在线预览的链接 加上微软的链接 word ppt 都需要微软的服务 pdf jpg png不需要 可以直接预览
              var previewLink = "http://view.officeapps.live.com/op/view.aspx?src="+this.externalLink;
                 this.fileList = []
                 //上传七牛云成功之后 将上传文档的信息写入数据库
-                this.postRequest('/api/courseWare/writeFileInfo', {
-                            courseWareName: response.key,
+                this.postRequest('/api/attachment/upload', {
+                            attachName: response.key,
                             externalLink: this.externalLink,
                             previewLink: previewLink,
                             creatorJobNo: window.localStorage["jobNo"],
                             courseId: this.courseWareForm.courseId,
                             chapterId: this.courseWareForm.chapterId,
-                            wareType:1
+                            fileType:"courseware"
                   }).then(resp=> {
                       
                       if(resp.data.status === 200){
                 this.$message.success('上传成功！');
                 this.getCourseWareList();
 
-                this.courseWareForm.chapterId=null;
+                // this.courseWareForm.chapterId=null;
                 this.disableUpload = true;
 
                       }
@@ -252,16 +249,14 @@
                 if(this.courseWareForm.chapterId != null){
                 this.courseWareForm.chapterId = null;
                 }
-                console.log("选择课程");
                 this.disableChapter=false;
                 this.getChapterList();
                 // this.isChoose = false;
             },
              chooseChapter(){
                  this.disableUpload = false;
-                 console.log("参数为："+this.courseWareForm.chapterId);
-                  this.getCourseWareList();
                   this.isChoose = true;
+                  this.getCourseWareList();
                   //获取当前选择的课程名 章节名
                   for(let i = 0;i < this.courses.length;i++){
                       if (this.courses[i].courseId == this.courseWareForm.courseId){
@@ -329,10 +324,11 @@
            getCourseWareList() {
                 var dataFromDb = [];
               let _this = this
-                this.$axios.get('/api/courseWare/getCourseWareList', {
+                this.$axios.get('/api/attachment/getFileByDoubleIdAndType', {
                     params:{
                         chapterId:this.courseWareForm.chapterId,
-                        wareType:1
+                        courseId:this.courseWareForm.courseId,
+                        fileType:"courseware"
                     
                     }
                 }).then((res) => {
@@ -346,8 +342,8 @@
                
                 var obj = {}
                 var dt = res.data.data
-                obj.courseWareId = dt[i].courseWareId
-                obj.courseWareName = dt[i].courseWareName
+                obj.courseWareId = dt[i].attachId
+                obj.courseWareName = dt[i].attachName
                 obj.createTime = dt[i].createTime
                 obj.externalLink = dt[i].externalLink
                 obj.previewLink = dt[i].previewLink
@@ -370,9 +366,9 @@
             },
      
             deleteCourseWare(courseWareId){
-                  this.$axios.delete('/api/courseWare/delete', {
+                  this.$axios.delete('/api/attachment/deleteFileById', {
                     params: {
-                        courseWareId: this.deleteCourseWareId
+                        attachId: this.deleteCourseWareId
                     }
                 }).then((res) => {
 
