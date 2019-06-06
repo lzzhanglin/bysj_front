@@ -14,14 +14,14 @@
                     </el-tooltip>
                 </div>
                 <!-- 消息中心 -->
-                <div class="btn-bell">
+                <!-- <div class="btn-bell">
                     <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
                         <router-link to="/tabs">
                             <i class="el-icon-bell"></i>
                         </router-link>
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
-                </div>
+                </div> -->
                 <!-- 用户头像 -->
                 <div class="user-avator"><img src="../../assets/img/img.jpg"></div>
                 <!-- 用户名下拉菜单 -->
@@ -67,6 +67,7 @@
                     window.localStorage.removeItem('token');
                     window.localStorage.removeItem('username');
                     window.localStorage.removeItem('role');
+                    window.localStorage.removeItem('IP');
                    console.log("注销登录后角色为："+window.localStorage["role"]);
                     this.$router.push('/login');
                 }

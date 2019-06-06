@@ -59,6 +59,7 @@ import { Message, MessageBox } from 'element-ui'
                           window.localStorage["username"] = resp.data.username;
                           window.localStorage["role"] = resp.data.role;
                           window.localStorage["jobNo"] = resp.data.jobNo;
+                          window.localStorage["IP"] = resp.data.IP;
                         this.$router.push('/');
                       }else{
                         return false;

@@ -42,9 +42,10 @@ axios.interceptors.response.use(data=> {
       duration:2000
   })
   window.localStorage.removeItem('token');
-                    window.localStorage.removeItem('username');
-                    window.localStorage.removeItem('role');
-                    this.$router.push('/login');
+  window.localStorage.removeItem('username');
+  window.localStorage.removeItem('role');
+  this.$router.push('/login');
+  console.log("已过期");
 
 }else{
     Message({
